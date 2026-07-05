@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://3rxn57huq23u"]
+
+[ext_resource type="Script" uid="uid://dy0n14q4eqh34" path="res://scenes/selection/order_marker.gd" id="1_l0jos"]
+[ext_resource type="Material" uid="uid://bhjpf5fgesh2w" path="res://scenes/selection/marker_material.tres" id="1_ydaoj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+material = ExtResource("1_ydaoj")
+flip_faces = true
+radius = 0.4
+height = 0.8
+radial_segments = 16
+rings = 8
+
+[node name="OrderMarker" type="Node3D" unique_id=903037787 node_paths=PackedStringArray("label", "paths_holder", "sphere_mesh")]
+script = ExtResource("1_l0jos")
+line_tickness = 0.05
+label = NodePath("Label3D")
+paths_holder = NodePath("Paths")
+sphere_mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=551210701]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1253150958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0044033527)
+billboard = 1
+no_depth_test = true
+render_priority = 9
+outline_render_priority = 8
+outline_modulate = Color(1, 1, 1, 1)
+text = "1"
+font_size = 92
+
+[node name="Paths" type="Node3D" parent="." unique_id=721377397]
