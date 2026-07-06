@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://yqucfva4qb82"]
+
+[ext_resource type="PackedScene" uid="uid://boabm2qe2p72m" path="res://scenes/blender/models/portametalica.fbx" id="1_hnm1c"]
+
+[node name="portametalica" type="Node3D" unique_id=358870241]
+
+[node name="portametalica" parent="." unique_id=2057563764 instance=ExtResource("1_hnm1c")]
