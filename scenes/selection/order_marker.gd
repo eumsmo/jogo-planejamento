@@ -8,10 +8,30 @@ extends Node3D
 @export var label: Label3D
 @export var paths_holder: Node3D
 @export var sphere_mesh: MeshInstance3D
+@export var path_mesh: MeshInstance3D
+@export var normal_mat: Material
+@export var disabled_mat: Material
 
 
 var order: int = 1
 var id: Vector2i
+
+func _ready() -> void:
+	sphere_mesh.mesh = sphere_mesh.mesh.duplicate()
+	path_mesh.mesh = path_mesh.mesh.duplicate()
+	path_mesh.mesh.material = sphere_mesh.mesh.surface_get_material(0)
+
+func set_disabled(is_it: bool = true) -> void:
+	if is_it:
+		sphere_mesh.mesh.surface_set_material(0, disabled_mat)
+		path_mesh.mesh.surface_set_material(0, disabled_mat)
+	else:
+		sphere_mesh.mesh.surface_set_material(0, normal_mat)
+		path_mesh.mesh.surface_set_material(0, normal_mat)
+
+func set_preview(is_it: bool = true) -> void:
+	set_disabled(is_it)
+	path_mesh.visible = not is_it
 
 func set_order(num: int) -> void:
 	label.text = str(num)
@@ -28,62 +48,52 @@ func remove_failed_jumps(path_arr: Array[Vector2i]) -> void:
 		
 		if (current.x == prev.x and prev.x == next.x) or (current.y == prev.y and prev.y == next.y):
 			path_arr.remove_at(i)
-		
 
-func generate_paths_to(other: Vector2i) -> void:
-	var path = Game.instance.world.a_star.get_id_path(id, other)
-	remove_failed_jumps(path)
-	print("> ", path)
-	
-	var base = path[0]
-	
-	for i in range(0, len(path)-1):
-		var from = path[i] - base
-		var to = path[i+1] - base
-		create_path(from, to, 1)
 
-func create_path(from: Vector2i, to: Vector2i, is_tip: bool = false) -> Node3D:
-	var mesh_instance = MeshInstance3D.new()
-	paths_holder.add_child(mesh_instance)
-	
-	var mesh = CylinderMesh.new()
-	mesh.top_radius = line_tickness
-	mesh.bottom_radius = line_tickness
-	mesh.radial_segments = radial_segments
-	mesh.rings = 1
-	mesh.cap_top = false
-	mesh.cap_bottom = false
-	mesh.material = sphere_mesh.mesh.surface_get_material(0)
-	#mesh.flip_faces = true
-	mesh.height = from.distance_to(to)
-	mesh_instance.mesh = mesh
-	mesh_instance.cast_shadow = false
-	mesh_instance.position = Vector3(from.x, 0, from.y)
-	print(mesh.height)
+func generate_path_to(other: Vector2i) -> void:
+	set_path(Vector2i(0,0), other - id)
+
+func set_path(from: Vector2i, to: Vector2i) -> void:
+	path_mesh.mesh.height = from.distance_to(to)
+	path_mesh.position = Vector3(from.x, 0, from.y)
 	
 	if from.y == to.y:
 		var s = sign(to.x - from.x)
-		mesh_instance.rotation_degrees.z = 90 * s
-		mesh_instance.position.x += mesh.height/2 * s
+		path_mesh.rotation_degrees.x = 0
+		path_mesh.rotation_degrees.z = 90 * s
+		path_mesh.position.x += path_mesh.mesh.height/2 * s
 	else:
 		var s = sign(to.y - from.y)
-		mesh_instance.rotation_degrees.x = 90 * s
-		mesh_instance.position.z += mesh.height/2 * s
-		
+		path_mesh.rotation_degrees.z = 0
+		path_mesh.rotation_degrees.x = 90 * s
+		path_mesh.position.z += path_mesh.mesh.height/2 * s
 	
-	var connection_mesh = MeshInstance3D.new()
-	var connection_mesh_mesh = SphereMesh.new()
-	connection_mesh_mesh.radius = mesh.top_radius
-	connection_mesh_mesh.height = connection_mesh_mesh.radius * 2
-	connection_mesh_mesh.radial_segments = radial_segments
-	connection_mesh_mesh.rings = radial_segments/2
-	connection_mesh_mesh.material = sphere_mesh.mesh.surface_get_material(0)
-	
-	connection_mesh.mesh = connection_mesh_mesh
-	paths_holder.add_child(connection_mesh)
-	connection_mesh.cast_shadow = false
-	connection_mesh.position = Vector3(to.x, 0, to.y)
-	
-	
-	
-	return mesh_instance
+	path_mesh.show()
+
+func path_visible(visible: bool) -> void:
+	path_mesh.visible = visible
+
+func is_on_same_line_at(pos: Vector2i) -> bool:
+	return id.x == pos.x or id.y == pos.y
+
+func is_on_same_line_of(other: OrderMarker) -> bool:
+	return id.x == other.id.x or id.y == other.id.y
+
+func can_get_to_pos(pos: Vector2i) -> bool:
+	if pos.x == id.x:
+		var step = sign(id.y-pos.y)
+		var pos_i = Vector2i(id)
+		for i in range(pos.y, id.y, step):
+			pos_i.y = i
+			if Game.instance.world.is_pos_solid(pos_i):
+				return false
+	elif pos.y == id.y:
+		var step = sign(id.x-pos.x)
+		var pos_i = Vector2i(id)
+		for i in range(pos.x, id.x, step):
+			pos_i.x = i
+			if Game.instance.world.is_pos_solid(pos_i):
+				return false
+	else:
+		return false
+	return true

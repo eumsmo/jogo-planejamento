@@ -10,6 +10,7 @@ class GridCellInfo:
 @export var grid_map: GridMap
 
 var grid_array: Array[Array] = []
+var solid_items = [0]
 
 # Important when setting an array by gridmap only
 var gridmap_x_offset: int = 0
@@ -86,6 +87,9 @@ func gridmap_pos_to_gridarray(prev_pos: Vector3i) -> Vector2i:
 	pos.y -= gridmap_y_offset
 	return pos
 
+func gridarray_pos_to_gridmap(arr_pos: Vector2i) -> Vector3i:
+	return Vector3i(arr_pos.x+gridmap_x_offset,0,arr_pos.y+gridmap_y_offset)
+
 func is_in_array_bounds(pos: Vector2) -> bool:
 	if pos.x < 0 or pos.x >= len(grid_array[0]):
 		return false
@@ -115,4 +119,11 @@ func get_grid_at(world_pos: Vector3) -> GridCellInfo:
 	return info
 
 func get_world_pos_of(array_pos: Vector2i) -> Vector3:
-	return grid_map.local_to_map(Vector3(array_pos.x, 0, array_pos.y))
+	var in_map_pos = gridarray_pos_to_gridmap(array_pos)
+	var in_world_pos = grid_map.map_to_local(in_map_pos)
+	in_world_pos = grid_map.to_global(in_world_pos)
+	return in_world_pos
+
+
+func is_pos_solid(arr_pos: Vector2i) -> bool:
+	return solid_items.has(grid_array[arr_pos.y][arr_pos.x])

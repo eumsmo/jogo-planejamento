@@ -9,6 +9,7 @@ var current_pos: Vector2i
 
 signal cell_clicked(info: World.GridCellInfo)
 signal cell_unpressed(cell: World.GridCellInfo, pos: Vector2i)
+signal cell_hovered(cell: World.GridCellInfo)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -37,7 +38,12 @@ func _check_for_cell_under() -> void:
 	
 	
 	
-	current_cell = Game.instance.world.get_grid_at(world_pos)
+	var cell = Game.instance.world.get_grid_at(world_pos)
+	if cell == current_cell:
+		return
+	
+	current_cell = cell
+	
 	if current_cell != null:
 		var pos = current_cell.world_pos
 		pos.y -= 0.45
@@ -45,3 +51,5 @@ func _check_for_cell_under() -> void:
 		selection_visualization.show()
 	else:
 		selection_visualization.hide()
+	
+	cell_hovered.emit(current_cell)

@@ -18,9 +18,17 @@ selector = NodePath("Systems/GridSelector")
 
 [node name="Systems" type="Node3D" parent="." unique_id=1404789921]
 
-[node name="Planning" type="Node3D" parent="Systems" unique_id=738419957]
+[node name="Planning" type="Node3D" parent="Systems" unique_id=738419957 node_paths=PackedStringArray("preview_marker", "last_marker")]
 script = ExtResource("5_iywne")
 marker_scene = ExtResource("4_lbhrr")
+preview_marker = NodePath("PreviewMarker")
+last_marker = NodePath("First")
+
+[node name="PreviewMarker" parent="Systems/Planning" unique_id=1505654806 instance=ExtResource("4_lbhrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8346536, 0.14759254, -1.3945565)
+
+[node name="First" parent="Systems/Planning" unique_id=903037787 instance=ExtResource("4_lbhrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6225753, 0.2951851, 4.2138977)
 
 [node name="GridSelector" type="Node" parent="Systems" unique_id=1634923441 node_paths=PackedStringArray("selection_visualization", "camera")]
 script = ExtResource("2_yqjtg")
