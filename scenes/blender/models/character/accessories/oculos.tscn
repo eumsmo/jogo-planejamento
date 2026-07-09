@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://4x5f5sqy5tv8"]
+
+[ext_resource type="PackedScene" uid="uid://b6c86tbrsetr" path="res://scenes/blender/models/character/accessories/fbx/oculos.fbx" id="1_01eht"]
+
+[node name="oculos" type="Node3D" unique_id=440939599]
+
+[node name="oculos" parent="." unique_id=620451779 instance=ExtResource("1_01eht")]
