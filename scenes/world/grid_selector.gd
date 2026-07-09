@@ -7,7 +7,7 @@ extends Node
 var current_cell: World.GridCellInfo
 var current_pos: Vector2i
 
-signal cell_clicked(info: World.GridCellInfo)
+signal cell_clicked(info: World.GridCellInfo, button: int)
 signal cell_unpressed(cell: World.GridCellInfo, pos: Vector2i)
 signal cell_hovered(cell: World.GridCellInfo)
 
@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if current_cell != null and event.is_pressed():
-			cell_clicked.emit(current_cell)
+			cell_clicked.emit(current_cell,event.button_index)
 
 
 func _check_for_cell_under() -> void:

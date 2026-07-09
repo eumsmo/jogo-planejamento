@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bjse1217y62jj"]
+
+[ext_resource type="Script" uid="uid://cfogv3rlp6ocm" path="res://scenes/subject/subject.gd" id="1_s6sdc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+radius = 0.25
+height = 0.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Subject" type="Node3D" unique_id=720220699]
+script = ExtResource("1_s6sdc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1554044722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41504353, 0)
+mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1874188434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4162498, 0.2324821)
+mesh = SubResource("BoxMesh_g4v7s")

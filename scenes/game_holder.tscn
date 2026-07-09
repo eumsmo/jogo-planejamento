@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://elldjk0mw77j"]
+
+[ext_resource type="PackedScene" uid="uid://duab2g6413qdl" path="res://scenes/game.tscn" id="1_uc32q"]
+
+[sub_resource type="GDScript" id="GDScript_g4v7s"]
+script/source = "extends Button
+
+
+func play() -> void:
+	Game.instance.controller.play()
+"
+
+[node name="GameHolder" type="Control" unique_id=530257783]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=337357236]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+mouse_target = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=906324969]
+handle_input_locally = false
+size = Vector2i(576, 324)
+render_target_update_mode = 4
+
+[node name="Game" parent="SubViewportContainer/SubViewport" unique_id=1774288492 instance=ExtResource("1_uc32q")]
+
+[node name="UI" type="Control" parent="." unique_id=2079631705]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="UI" unique_id=720755826]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Play"
+script = SubResource("GDScript_g4v7s")
+
+[connection signal="pressed" from="UI/Button" to="UI/Button" method="play"]

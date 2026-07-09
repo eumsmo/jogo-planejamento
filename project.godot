@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="jogo-planejamento"
-run/main_scene="uid://duab2g6413qdl"
+run/main_scene="uid://elldjk0mw77j"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
