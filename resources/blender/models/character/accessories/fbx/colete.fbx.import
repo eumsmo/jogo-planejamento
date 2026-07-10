@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://3k7fl7jfkhys"
-path="res://.godot/imported/pulseiras.fbx-b150a43ae1a9970f7c658624984d56d6.scn"
+uid="uid://xnwgmyvgdbs"
+path="res://.godot/imported/colete.fbx-31e15e0830a5ae728299b182927ce26f.scn"
 
 [deps]
 
-source_file="res://scenes/blender/models/character/accessories/fbx/pulseiras.fbx"
-dest_files=["res://.godot/imported/pulseiras.fbx-b150a43ae1a9970f7c658624984d56d6.scn"]
+source_file="res://resources/blender/models/character/accessories/fbx/colete.fbx"
+dest_files=["res://.godot/imported/colete.fbx-31e15e0830a5ae728299b182927ce26f.scn"]
 
 [params]
 

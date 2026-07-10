@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dp368kidw725f"]
 
-[ext_resource type="PackedScene" uid="uid://c61xd531td7st" path="res://scenes/blender/models/character/accessories/fbx/brinco_etiqueta.fbx" id="1_w4756"]
+[ext_resource type="PackedScene" uid="uid://c61xd531td7st" path="res://resources/blender/models/character/accessories/fbx/brinco_etiqueta.fbx" id="1_w4756"]
 
 [node name="brinco_etiqueta" type="Node3D" unique_id=755684999]
 

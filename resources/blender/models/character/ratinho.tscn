@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://df3ftbfhdpg1"]
 
-[ext_resource type="PackedScene" uid="uid://ru0ruijfqu0n" path="res://scenes/blender/models/character/ratinho.fbx" id="1_1wyfr"]
+[ext_resource type="PackedScene" uid="uid://ru0ruijfqu0n" path="res://resources/blender/models/character/ratinho.fbx" id="1_1wyfr"]
 
 [node name="ratinho" type="Node3D" unique_id=496586083]
 

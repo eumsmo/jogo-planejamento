@@ -1,21 +1,94 @@
 [gd_scene format=3 uid="uid://bjse1217y62jj"]
 
 [ext_resource type="Script" uid="uid://cfogv3rlp6ocm" path="res://scenes/subject/subject.gd" id="1_s6sdc"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
-radius = 0.25
-height = 0.75
-
-[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
-size = Vector3(0.1, 0.1, 0.1)
+[ext_resource type="PackedScene" uid="uid://df3ftbfhdpg1" path="res://resources/blender/models/character/ratinho.tscn" id="2_5ckxs"]
+[ext_resource type="PackedScene" uid="uid://4x5f5sqy5tv8" path="res://resources/blender/models/character/accessories/oculos.tscn" id="3_jkodf"]
+[ext_resource type="PackedScene" uid="uid://dp368kidw725f" path="res://resources/blender/models/character/accessories/brinco_etiqueta.tscn" id="4_edax3"]
+[ext_resource type="PackedScene" uid="uid://ishqcf23wab" path="res://resources/blender/models/character/accessories/colete.tscn" id="5_q2oal"]
+[ext_resource type="PackedScene" uid="uid://bq2hb4lo8xoqg" path="res://resources/blender/models/character/accessories/pulseiras.tscn" id="6_kgi1f"]
+[ext_resource type="PackedScene" uid="uid://bdqqdnbi6qxr8" path="res://resources/blender/models/character/accessories/sapato.tscn" id="7_x0fhm"]
 
 [node name="Subject" type="Node3D" unique_id=720220699]
 script = ExtResource("1_s6sdc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1554044722]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41504353, 0)
-mesh = SubResource("CapsuleMesh_g4v7s")
+[node name="ratinho" parent="." unique_id=496586083 instance=ExtResource("2_5ckxs")]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1874188434]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4162498, 0.2324821)
-mesh = SubResource("BoxMesh_g4v7s")
+[node name="Skeleton3D" parent="ratinho/ratinho/arm_ratinho" parent_id_path=PackedInt32Array(496586083, 1208809494, 1401608767) index="0" unique_id=1191341057]
+bones/1/position = Vector3(0, -0.00026623782, 0)
+bones/1/rotation = Quaternion(1, 2.6764623e-24, -4.371139e-08, 6.123032e-17)
+bones/4/position = Vector3(2.1102902e-11, -0.00026623782, 0.00024138906)
+bones/4/rotation = Quaternion(0.7071068, 3.090862e-08, -3.0908627e-08, 0.7071067)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/position = Vector3(-3.0868565e-18, 0.001395707, -2.3542214e-05)
+bones/5/rotation = Quaternion(-7.650353e-08, 1.5511057e-08, -0.19870658, 0.980059)
+bones/6/position = Vector3(-3.1253663e-25, 0.0009544668, 1.4901161e-10)
+bones/6/rotation = Quaternion(7.8060125e-08, 4.95562e-16, -1.9385468e-25, 1)
+bones/7/position = Vector3(2.0262673e-25, 0.001282472, 0)
+bones/7/rotation = Quaternion(4.5632536e-08, 1.416248e-08, 0.29641175, 0.95506024)
+bones/8/position = Vector3(-4.654057e-25, 0.0015593595, -1.4901161e-10)
+bones/8/rotation = Quaternion(-4.7779753e-08, 8.8064434e-17, -7.1793837e-26, 1)
+bones/9/position = Vector3(2.2562304e-25, 0.0013591489, 9.540979e-18)
+bones/9/rotation = Quaternion(-7.921822e-08, 1.862991e-08, -0.22892676, 0.97344375)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(-4.539518e-25, 0.00091553736, 1.4901168e-10)
+bones/10/rotation = Quaternion(2.1418204e-07, 8.881785e-16, -5.2445225e-22, 1)
+bones/14/rotation = Quaternion(-0.68463355, -0.17685302, -0.68463343, 0.17685309)
+bones/14/scale = Vector3(0.9999998, 0.99999976, 0.99999994)
+bones/17/position = Vector3(0, 0.00041712075, -9.001852e-17)
+bones/19/rotation = Quaternion(-0.68463355, 0.17685302, 0.68463343, 0.17685309)
+bones/19/scale = Vector3(0.9999998, 0.99999976, 0.99999994)
+
+[node name="clothes" type="Node3D" parent="." unique_id=2073248546]
+
+[node name="oculos" type="BoneAttachment3D" parent="clothes" unique_id=305638294]
+transform = Transform3D(100, 0, 0, 0, 99.99998, 9.094947e-13, 0, -9.094947e-13, 99.99998, 0, 0.54831177, -2.3337364e-08)
+bone_name = "heard"
+bone_idx = 17
+use_external_skeleton = true
+external_skeleton = NodePath("../../ratinho/ratinho/arm_ratinho/Skeleton3D")
+
+[node name="oculos" parent="clothes/oculos" unique_id=440939599 instance=ExtResource("3_jkodf")]
+transform = Transform3D(0.01, 0, 0, 0, 0.010000003, -9.0949514e-17, 0, 9.0949514e-17, 0.010000003, 0, 0.0039681834, 0.0021539486)
+
+[node name="brinco_esquerdo" type="BoneAttachment3D" parent="clothes" unique_id=1883344522]
+transform = Transform3D(100, 0, 0, 0, 99.99998, 9.094947e-13, 0, -9.094947e-13, 99.99998, 0, 0.54831177, -2.3337364e-08)
+bone_name = "heard"
+bone_idx = 17
+use_external_skeleton = true
+external_skeleton = NodePath("../../ratinho/ratinho/arm_ratinho/Skeleton3D")
+
+[node name="brinco_etiqueta" parent="clothes/brinco_esquerdo" unique_id=755684999 instance=ExtResource("4_edax3")]
+transform = Transform3D(0.0061425217, -0.0069660004, 0.0037073242, 0.005963934, 0.007174596, 0.0035995354, -0.0051672924, 1.1920929e-09, 0.008561489, 0.0032537759, 0.003454099, 2.3670538e-10)
+
+[node name="colete" type="BoneAttachment3D" parent="clothes" unique_id=1984044680]
+transform = Transform3D(100, 0, 0, 0, 99.99998, 0, 0, 0, 99.99998, 0, 0.24278085, -2.8941734e-08)
+bone_name = "body"
+bone_idx = 0
+use_external_skeleton = true
+external_skeleton = NodePath("../../ratinho/ratinho/arm_ratinho/Skeleton3D")
+
+[node name="colete" parent="clothes/colete" unique_id=1345431331 instance=ExtResource("5_q2oal")]
+transform = Transform3D(0.01, 0, 0, 0, 0.010000003, 0, 0, 0, 0.010000003, 0, 0.0004498579, 2.894174e-10)
+
+[node name="sapato" type="BoneAttachment3D" parent="clothes" unique_id=1408541086]
+transform = Transform3D(100, 1.0705849e-21, 0, 0, -99.99998, 0, 0, 0, -99.99998, -0.062281433, 0.09528697, -6.512254e-08)
+bone_name = "leg.l"
+bone_idx = 12
+use_external_skeleton = true
+external_skeleton = NodePath("../../ratinho/ratinho/arm_ratinho/Skeleton3D")
+
+[node name="sapato" parent="clothes/sapato" unique_id=77203111 instance=ExtResource("7_x0fhm")]
+transform = Transform3D(0.01, 1.0705851e-25, 0, 0, -0.010000003, 0, 0, 0, -0.010000003, 0.00062281435, 0.00095286994, -6.512256e-10)
+
+[node name="pulseiras" type="BoneAttachment3D" parent="clothes" unique_id=524324396]
+transform = Transform3D(1.1920927e-05, 48.431797, 87.4892, -5.9604627e-06, -87.48917, 48.431797, 99.99996, -1.341104e-05, -1.1920925e-05, 0.2643066, 0.2759583, -4.5870372e-08)
+bone_name = "arm.r_end"
+bone_idx = 15
+use_external_skeleton = true
+external_skeleton = NodePath("../../ratinho/ratinho/arm_ratinho/Skeleton3D")
+
+[node name="pulseiras" parent="clothes/pulseiras" unique_id=336641684 instance=ExtResource("6_kgi1f")]
+transform = Transform3D(1.6379706e-09, 6.945167e-10, 0.010000004, 0.009985693, -0.00053473003, -1.0988289e-09, 0.00053472864, 0.009985696, -7.5427664e-10, 5.997839e-06, -0.0003239122, -9.70564e-06)
+
+[editable path="ratinho"]
+[editable path="ratinho/ratinho"]

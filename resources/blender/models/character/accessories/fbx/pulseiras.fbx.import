@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c61xd531td7st"
-path="res://.godot/imported/brinco_etiqueta.fbx-2cdeae9e537ab81b74a52352f53746c6.scn"
+uid="uid://3k7fl7jfkhys"
+path="res://.godot/imported/pulseiras.fbx-4ec4693476306e42253bad7ee18517bf.scn"
 
 [deps]
 
-source_file="res://scenes/blender/models/character/accessories/fbx/brinco_etiqueta.fbx"
-dest_files=["res://.godot/imported/brinco_etiqueta.fbx-2cdeae9e537ab81b74a52352f53746c6.scn"]
+source_file="res://resources/blender/models/character/accessories/fbx/pulseiras.fbx"
+dest_files=["res://.godot/imported/pulseiras.fbx-4ec4693476306e42253bad7ee18517bf.scn"]
 
 [params]
 

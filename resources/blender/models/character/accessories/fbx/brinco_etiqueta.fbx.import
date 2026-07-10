@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b6c86tbrsetr"
-path="res://.godot/imported/oculos.fbx-3ff0a6ad3c5e17122b109aef7763b408.scn"
+uid="uid://c61xd531td7st"
+path="res://.godot/imported/brinco_etiqueta.fbx-1e6e77e06893f73f14d42cf0aa79007d.scn"
 
 [deps]
 
-source_file="res://scenes/blender/models/character/accessories/fbx/oculos.fbx"
-dest_files=["res://.godot/imported/oculos.fbx-3ff0a6ad3c5e17122b109aef7763b408.scn"]
+source_file="res://resources/blender/models/character/accessories/fbx/brinco_etiqueta.fbx"
+dest_files=["res://.godot/imported/brinco_etiqueta.fbx-1e6e77e06893f73f14d42cf0aa79007d.scn"]
 
 [params]
 

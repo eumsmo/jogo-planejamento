@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bq2hb4lo8xoqg"]
 
-[ext_resource type="PackedScene" uid="uid://3k7fl7jfkhys" path="res://scenes/blender/models/character/accessories/fbx/pulseiras.fbx" id="1_5nwg4"]
+[ext_resource type="PackedScene" uid="uid://3k7fl7jfkhys" path="res://resources/blender/models/character/accessories/fbx/pulseiras.fbx" id="1_5nwg4"]
 
 [node name="pulseiras" type="Node3D" unique_id=336641684]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://boabm2qe2p72m"
-path="res://.godot/imported/portametalica.fbx-48789a556bb417ec6e73c5a915897d74.scn"
+uid="uid://dvmxo1axbb6yu"
+path="res://.godot/imported/sapato.fbx-06acb3980319421ffb5d5415940eb2ec.scn"
 
 [deps]
 
-source_file="res://scenes/blender/models/portametalica.fbx"
-dest_files=["res://.godot/imported/portametalica.fbx-48789a556bb417ec6e73c5a915897d74.scn"]
+source_file="res://resources/blender/models/character/accessories/fbx/sapato.fbx"
+dest_files=["res://.godot/imported/sapato.fbx-06acb3980319421ffb5d5415940eb2ec.scn"]
 
 [params]
 

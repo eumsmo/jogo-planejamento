@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdqqdnbi6qxr8"]
 
-[ext_resource type="PackedScene" uid="uid://dvmxo1axbb6yu" path="res://scenes/blender/models/character/accessories/fbx/sapato.fbx" id="1_fefnt"]
+[ext_resource type="PackedScene" uid="uid://dvmxo1axbb6yu" path="res://resources/blender/models/character/accessories/fbx/sapato.fbx" id="1_fefnt"]
 
 [node name="sapato" type="Node3D" unique_id=77203111]
 

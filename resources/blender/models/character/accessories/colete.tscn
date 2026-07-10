@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ishqcf23wab"]
 
-[ext_resource type="PackedScene" uid="uid://xnwgmyvgdbs" path="res://scenes/blender/models/character/accessories/fbx/colete.fbx" id="1_ebyfi"]
+[ext_resource type="PackedScene" uid="uid://xnwgmyvgdbs" path="res://resources/blender/models/character/accessories/fbx/colete.fbx" id="1_ebyfi"]
 
 [node name="colete" type="Node3D" unique_id=1345431331]
 

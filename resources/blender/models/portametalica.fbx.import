@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://xnwgmyvgdbs"
-path="res://.godot/imported/colete.fbx-753aa71d44b334fde65300c086522e97.scn"
+uid="uid://boabm2qe2p72m"
+path="res://.godot/imported/portametalica.fbx-7577355323b784b452c8cee62ad200a3.scn"
 
 [deps]
 
-source_file="res://scenes/blender/models/character/accessories/fbx/colete.fbx"
-dest_files=["res://.godot/imported/colete.fbx-753aa71d44b334fde65300c086522e97.scn"]
+source_file="res://resources/blender/models/portametalica.fbx"
+dest_files=["res://.godot/imported/portametalica.fbx-7577355323b784b452c8cee62ad200a3.scn"]
 
 [params]
 

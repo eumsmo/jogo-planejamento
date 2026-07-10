@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dvmxo1axbb6yu"
-path="res://.godot/imported/sapato.fbx-28ce83684d4529f4bd8331f3825cb610.scn"
+uid="uid://b6c86tbrsetr"
+path="res://.godot/imported/oculos.fbx-7f57de31f1691fa4b0cb258a11efe26f.scn"
 
 [deps]
 
-source_file="res://scenes/blender/models/character/accessories/fbx/sapato.fbx"
-dest_files=["res://.godot/imported/sapato.fbx-28ce83684d4529f4bd8331f3825cb610.scn"]
+source_file="res://resources/blender/models/character/accessories/fbx/oculos.fbx"
+dest_files=["res://.godot/imported/oculos.fbx-7f57de31f1691fa4b0cb258a11efe26f.scn"]
 
 [params]
 
