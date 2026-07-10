@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cvqavi7q5gjh6"
-path="res://.godot/imported/portametalica.fbx-7577355323b784b452c8cee62ad200a3.scn"
+uid="uid://4kdghusxxarx"
+path="res://.godot/imported/alavanca.fbx-227f518b137c53d550f931d8f1040a36.scn"
 
 [deps]
 
-source_file="res://resources/blender/models/portametalica.fbx"
-dest_files=["res://.godot/imported/portametalica.fbx-7577355323b784b452c8cee62ad200a3.scn"]
+source_file="res://resources/blender/models/machines/fbx/alavanca.fbx"
+dest_files=["res://.godot/imported/alavanca.fbx-227f518b137c53d550f931d8f1040a36.scn"]
 
 [params]
 

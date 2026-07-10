@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://p5o58i3jcblc"]
+
+[ext_resource type="PackedScene" uid="uid://3a4fgacwudft" path="res://resources/blender/models/machines/fbx/maquina_alavanca.fbx" id="1_wmwy3"]
+
+[node name="maquinaalavanca" type="Node3D" unique_id=37662211]
+
+[node name="maquina_alavanca" parent="." unique_id=175132521 instance=ExtResource("1_wmwy3")]

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://3qwx2bksmrvb"]
+
+[ext_resource type="PackedScene" uid="uid://fbcep3di0r3g" path="res://resources/blender/models/machines/fbx/grandebotao.fbx" id="1_qquu5"]
+
+[node name="grandebotao" type="Node3D" unique_id=2004233865]
+
+[node name="grandebotao" parent="." unique_id=1363789917 instance=ExtResource("1_qquu5")]

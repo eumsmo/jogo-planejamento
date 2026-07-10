@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dvmxo1axbb6yu"
-path="res://.godot/imported/sapato.fbx-06acb3980319421ffb5d5415940eb2ec.scn"
+uid="uid://3a4fgacwudft"
+path="res://.godot/imported/maquina_alavanca.fbx-857ed4e5127ab8a02ab98b5126f26aed.scn"
 
 [deps]
 
-source_file="res://resources/blender/models/character/accessories/fbx/sapato.fbx"
-dest_files=["res://.godot/imported/sapato.fbx-06acb3980319421ffb5d5415940eb2ec.scn"]
+source_file="res://resources/blender/models/machines/fbx/maquina_alavanca.fbx"
+dest_files=["res://.godot/imported/maquina_alavanca.fbx-857ed4e5127ab8a02ab98b5126f26aed.scn"]
 
 [params]
 

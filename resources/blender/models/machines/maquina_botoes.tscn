@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bnsewekl4gncv"]
+
+[ext_resource type="PackedScene" uid="uid://oyfb6xngspch" path="res://resources/blender/models/machines/fbx/maquina_botoes.fbx" id="1_q5bfm"]
+
+[node name="maquina_botoes" type="Node3D" unique_id=127447782]
+
+[node name="maquina_botoes" parent="." unique_id=1395666642 instance=ExtResource("1_q5bfm")]

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://btv53xwksdvj4"]
+
+[ext_resource type="PackedScene" uid="uid://dx2ikam4beo0b" path="res://resources/blender/models/character/accessories/fbx/sapatinho.fbx" id="1_ftb4k"]
+
+[node name="sapatinho" type="Node3D" unique_id=1831736529]
+
+[node name="sapatinho" parent="." unique_id=340152597 instance=ExtResource("1_ftb4k")]

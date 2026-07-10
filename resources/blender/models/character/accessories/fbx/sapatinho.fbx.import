@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cvqavi7q5gjh6"
-path="res://.godot/imported/portametalica.fbx-7577355323b784b452c8cee62ad200a3.scn"
+uid="uid://dx2ikam4beo0b"
+path="res://.godot/imported/sapatinho.fbx-b5c218f863aec3200d805165771c3721.scn"
 
 [deps]
 
-source_file="res://resources/blender/models/portametalica.fbx"
-dest_files=["res://.godot/imported/portametalica.fbx-7577355323b784b452c8cee62ad200a3.scn"]
+source_file="res://resources/blender/models/character/accessories/fbx/sapatinho.fbx"
+dest_files=["res://.godot/imported/sapatinho.fbx-b5c218f863aec3200d805165771c3721.scn"]
 
 [params]
 

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dgx3titcwo51c"]
+
+[ext_resource type="PackedScene" uid="uid://4kdghusxxarx" path="res://resources/blender/models/machines/fbx/alavanca.fbx" id="1_bx2ee"]
+
+[node name="alavanca" type="Node3D" unique_id=1512997537]
+
+[node name="alavanca" parent="." unique_id=569468908 instance=ExtResource("1_bx2ee")]

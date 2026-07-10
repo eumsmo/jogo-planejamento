@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cvqavi7q5gjh6"
-path="res://.godot/imported/portametalica.fbx-7577355323b784b452c8cee62ad200a3.scn"
+uid="uid://oyfb6xngspch"
+path="res://.godot/imported/maquina_botoes.fbx-6e4f91ebe47f30b3fe82afc4bac1b15f.scn"
 
 [deps]
 
-source_file="res://resources/blender/models/portametalica.fbx"
-dest_files=["res://.godot/imported/portametalica.fbx-7577355323b784b452c8cee62ad200a3.scn"]
+source_file="res://resources/blender/models/machines/fbx/maquina_botoes.fbx"
+dest_files=["res://.godot/imported/maquina_botoes.fbx-6e4f91ebe47f30b3fe82afc4bac1b15f.scn"]
 
 [params]
 
