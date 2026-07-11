@@ -36,7 +36,7 @@ func _check_for_cell_under() -> void:
 		selection_visualization.hide()
 		return
 	
-	
+	world_pos.y = Game.instance.world.global_position.y
 	
 	var cell = Game.instance.world.get_grid_at(world_pos)
 	if cell == current_cell:
@@ -44,7 +44,7 @@ func _check_for_cell_under() -> void:
 	
 	current_cell = cell
 	
-	if current_cell != null:
+	if current_cell != null and not Game.instance.world.is_pos_solid(current_cell.arr_pos):
 		var pos = current_cell.world_pos
 		pos.y -= 0.45
 		selection_visualization.global_position = pos

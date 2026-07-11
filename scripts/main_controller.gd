@@ -6,6 +6,8 @@ extends Node
 
 func play() -> void:
 	var plan = Game.instance.planning
+	Game.instance.planning.stop()
+	
 	var positions: Array[Vector2] = plan.get_position_arr()
 	var start_position = Game.instance.world.get_world_pos_of(positions[0])
 	var directions_raw: Array[Vector2] = plan.position_to_directions_arr(positions)
@@ -24,3 +26,10 @@ func spawn_subject_at(world_pos: Vector3) -> Subject:
 	
 	subject.global_position = world_pos
 	return subject
+
+
+func plan() -> void:
+	for child in subject_holder.get_children():
+		child.queue_free()
+	
+	Game.instance.planning.start()

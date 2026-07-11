@@ -1,30 +1,27 @@
 [gd_resource type="MeshLibrary" format=3 uid="uid://csog6e3kx6w7c"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
-size = Vector3(1, 3, 1)
+[ext_resource type="Material" uid="uid://cq0m2tbta0jta" path="res://resources/materials/grey.tres" id="1_4eui4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwrxv"]
-albedo_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_jr6j5"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
-material = SubResource("StandardMaterial3D_uwrxv")
-size = Vector2(1, 1)
-center_offset = Vector3(0, -0.5, 0)
+[sub_resource type="BoxMesh" id="BoxMesh_4eui4"]
+material = ExtResource("1_4eui4")
+size = Vector3(1, 10, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwrxv"]
 size = Vector3(1, 0.1, 1)
 
 [resource]
 item/0/name = "block"
-item/0/mesh = SubResource("BoxMesh_yf5fn")
+item/0/mesh = SubResource("PlaceholderMesh_jr6j5")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/mesh_cast_shadow = 1
 item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 item/1/name = "ground"
-item/1/mesh = SubResource("PlaneMesh_uwrxv")
-item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh = SubResource("BoxMesh_4eui4")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.5, 0)
 item/1/mesh_cast_shadow = 0
 item/1/shapes = [SubResource("BoxShape3D_uwrxv"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

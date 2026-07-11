@@ -6,6 +6,8 @@ extends Node3D
 @export var preview_marker: OrderMarker
 @export var last_marker: OrderMarker
 
+var running: bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Game.instance.selector.cell_clicked.connect(_handle_grid_cell_clicked)
@@ -19,6 +21,9 @@ func _ready() -> void:
 
 
 func _handle_grid_cell_hover(cell_info: World.GridCellInfo) -> void:
+	if not running:
+		return
+	
 	if cell_info == null or not last_marker.can_get_to_pos(cell_info.arr_pos) or cell_info.arr_pos == last_marker.id or get_marker_at(cell_info.arr_pos) != null:
 		preview_marker.hide()
 		last_marker.path_visible(false)
@@ -31,6 +36,9 @@ func _handle_grid_cell_hover(cell_info: World.GridCellInfo) -> void:
 	last_marker.path_visible(true)
 
 func _handle_grid_cell_clicked(cell_info: World.GridCellInfo, button: int) -> void:
+	if not running:
+		return
+	
 	if cell_info.solid or button != 1:
 		return
 	
@@ -104,3 +112,13 @@ func fill_spaces_in_direction_arr(direction_arr: Array[Vector2]) -> Array[Vector
 			filled_directions.append(v)
 	
 	return filled_directions
+
+
+func stop() -> void:
+	hide()
+	running = false
+
+func start() -> void:
+	show()
+	running = true
+	

@@ -10,6 +10,14 @@ func play() -> void:
 	Game.instance.controller.play()
 "
 
+[sub_resource type="GDScript" id="GDScript_uc32q"]
+script/source = "extends Button
+
+
+func plan() -> void:
+	Game.instance.controller.plan()
+"
+
 [node name="GameHolder" type="Control" unique_id=530257783]
 layout_mode = 3
 anchors_preset = 15
@@ -60,4 +68,16 @@ grow_vertical = 0
 text = "Play"
 script = SubResource("GDScript_g4v7s")
 
+[node name="Button2" type="Button" parent="UI" unique_id=985431889]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 41.0
+grow_vertical = 0
+text = "Plan"
+script = SubResource("GDScript_uc32q")
+
 [connection signal="pressed" from="UI/Button" to="UI/Button" method="play"]
+[connection signal="pressed" from="UI/Button2" to="UI/Button2" method="plan"]
