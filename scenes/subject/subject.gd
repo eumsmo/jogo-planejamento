@@ -4,6 +4,13 @@ extends Node3D
 var directions: Array[Vector2]
 var current_idx: int = 0
 
+var exact_points_on_path: Array[Vector2]
+var target_point_pos: Vector3
+var points_idx: int = 0
+var target_pos_in_arr: Vector2:
+	get:
+		return exact_points_on_path[points_idx] if points_idx < len(exact_points_on_path) else Vector2(999,999)
+
 var last_position: Vector3
 
 enum Animations { IDLE, WALK, BUTTONS, LEVER }
@@ -16,6 +23,10 @@ var ended_transition: bool = false
 func play() -> void:
 	current_idx = 0
 	last_position = position
+
+	points_idx = -1
+	go_to_next_point()
+
 	Game.instance.time.transition_progress.connect(transtion_progress)
 	Game.instance.time.tick.connect(next)
 	animator.play(animation_dict[Animations.IDLE])
@@ -24,11 +35,17 @@ func play() -> void:
 func set_directions(arr: Array[Vector2]) -> void:
 	directions = arr
 
+func set_exact_points_path(points_path: Array[Vector2]) -> void:
+	exact_points_on_path = points_path
+
 func transtion_progress(progress: float) -> void:
 	if ended_transition:
 		return
 	
 	animator.play(animation_dict[Animations.WALK])
+	
+	if last_position == target_point_pos:
+		go_to_next_point()
 	
 	var dir: Vector2 = directions[current_idx]
 	var dir3: Vector3 = vec2_to_vec3(dir)
@@ -86,3 +103,21 @@ func look_towards(pos: Vector3) -> void:
 	var dir = pos - global_position
 	dir.y = 0
 	look_at(global_position - dir)
+
+func go_to_next_point() -> void:
+	points_idx = clamp(points_idx + 1, 0, len(exact_points_on_path))
+	if points_idx == len(exact_points_on_path):
+		target_point_pos = Vector3(9999,9999,9999)
+	else:
+		target_point_pos = Game.instance.world.get_world_pos_of(exact_points_on_path[points_idx])
+
+func die() -> void:
+	can_go_next = false
+	
+	Game.instance.time.transition_progress.disconnect(transtion_progress)
+	Game.instance.time.tick.disconnect(next)
+	animator.play(animation_dict[Animations.IDLE])
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	queue_free()

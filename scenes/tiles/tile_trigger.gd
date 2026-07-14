@@ -1,6 +1,8 @@
 class_name TileTrigger
 extends Area3D
 
+@export var pos_in_arr: Vector2i
+
 @export var body_group: String = "subject"
 var bodies_inside: Array[Node3D]
 
@@ -20,6 +22,10 @@ func _ready() -> void:
 	body_entered.connect(_on_enter)
 	body_exited.connect(_on_exit)
 	refresh_animation()
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	global_position = Game.instance.world.get_world_pos_of(pos_in_arr)
 
 func _on_enter(body: Node3D) -> void:
 	if body.is_in_group(body_group) and not bodies_inside.has(body):

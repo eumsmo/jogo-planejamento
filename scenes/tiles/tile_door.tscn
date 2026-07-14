@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b7juqgvhes4jd"]
+
+[ext_resource type="Script" uid="uid://c381x71x2yoh8" path="res://scenes/tiles/tile_door.gd" id="1_qvymm"]
+[ext_resource type="PackedScene" uid="uid://yqucfva4qb82" path="res://resources/blender/models/portametalica.tscn" id="5_7tcbx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1, 2, 0.05)
+
+[node name="TileDoor" type="Area3D" unique_id=919187344 node_paths=PackedStringArray("animator")]
+script = ExtResource("1_qvymm")
+open_animation = "door_open_001"
+close_animation = "door_closing"
+animator = NodePath("mesh/portametalica/portametalica/AnimationPlayer")
+metadata/_custom_type_script = "uid://cwsykatkt7pgn"
+
+[node name="mesh" type="Node3D" parent="." unique_id=1568678372]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -1)
+
+[node name="portametalica" parent="mesh" unique_id=2029964074 instance=ExtResource("5_7tcbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Skeleton3D" parent="mesh/portametalica/portametalica/arm_porta" parent_id_path=PackedInt32Array(2029964074, 9280806, 285301958) index="0" unique_id=1058591480]
+bones/1/position = Vector3(0.009008535, 0.005700442, -7.6447126e-05)
+bones/1/rotation = Quaternion(0.49842322, 0.5015719, 0.5015719, 0.49842322)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=233028341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[editable path="mesh/portametalica"]
+[editable path="mesh/portametalica/portametalica"]

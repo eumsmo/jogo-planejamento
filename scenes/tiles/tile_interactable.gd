@@ -11,6 +11,10 @@ func _on_enter(body: Node3D) -> void:
 	
 	if body.is_in_group(body_group) and not had:
 		var subject: Subject = body
+		
+		if Vector2i(subject.target_pos_in_arr) != pos_in_arr:
+			return
+		
 		subject.pause()
 		
 		await Game.instance.time.tick
