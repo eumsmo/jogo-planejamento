@@ -4,6 +4,13 @@ extends Node
 @export var subject_holder: Node3D
 @export var subject_scene: PackedScene
 
+
+@export var level_scene: PackedScene
+
+func _ready() -> void:
+	Game.instance.world.on_subject_at_end.connect(on_entered_level_end)
+	set_level(level_scene)
+
 func play() -> void:
 	var plan = Game.instance.planning
 	Game.instance.planning.stop()
@@ -35,3 +42,30 @@ func plan() -> void:
 		child.queue_free()
 	
 	Game.instance.planning.start()
+
+
+func on_entered_level_end(sub: Subject) -> void:
+	if sub == null:
+		return
+	
+	print("End!")
+	
+	var next_level = Game.instance.world.level.next_level_scene
+	if next_level == null:
+		#...
+		return
+	
+	set_level(next_level)
+	
+
+func set_level(level_scene: PackedScene) -> void:
+	var level: Level = level_scene.instantiate()
+	Game.instance.world.add_child(level)
+	level.position = Vector3.ZERO
+	
+	Game.instance.world.setup_level(level)
+	
+	await get_tree().process_frame
+	
+	Game.instance.planning.reset()
+	plan()

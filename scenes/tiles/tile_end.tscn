@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://nwewi03x23h1"]
+
+[ext_resource type="Script" uid="uid://cwsykatkt7pgn" path="res://scenes/tiles/tile_trigger.gd" id="1_3y3fl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.8, 1, 0.8)
+
+[node name="TileEnd" type="Area3D" unique_id=1151222182]
+script = ExtResource("1_3y3fl")
+metadata/_custom_type_script = "uid://cwsykatkt7pgn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1414801326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_g4v7s")

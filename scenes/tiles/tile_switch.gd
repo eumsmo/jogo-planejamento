@@ -1,3 +1,4 @@
+@tool
 extends TileInteractable
 
 @export_group("Animation")
@@ -10,6 +11,9 @@ var is_on: bool = false
 signal value_changed(val: bool)
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	super()
 	switch_animation()
 

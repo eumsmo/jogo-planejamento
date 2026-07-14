@@ -4,6 +4,7 @@ extends Node3D
 @export var marker_scene: PackedScene
 
 @export var preview_marker: OrderMarker
+@export var first_marker: OrderMarker
 @export var last_marker: OrderMarker
 
 var running: bool = true
@@ -14,10 +15,6 @@ func _ready() -> void:
 	Game.instance.selector.cell_hovered.connect(_handle_grid_cell_hover)
 	preview_marker.set_preview(true)
 	preview_marker.set_order(last_marker.order + 1)
-	
-	await get_tree().process_frame
-	set_starting_marker()
-	
 
 func set_starting_marker() -> void:
 	last_marker.id = Game.instance.world.start_id
@@ -125,4 +122,14 @@ func stop() -> void:
 func start() -> void:
 	show()
 	running = true
+
+func reset() -> void:
+	for marker in get_children():
+		if marker != preview_marker and marker != first_marker:
+			marker.queue_free()
+	
+	last_marker = first_marker
+	last_marker.path_visible(false)
+	preview_marker.set_order(last_marker.order + 1)
+	set_starting_marker()
 	

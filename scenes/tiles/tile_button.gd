@@ -1,3 +1,4 @@
+@tool
 extends TileInteractable
 
 @export var ticks: int = 3
@@ -7,6 +8,9 @@ var is_on: bool = false
 signal value_changed(val: bool)
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	super()
 	button_animation()
 	

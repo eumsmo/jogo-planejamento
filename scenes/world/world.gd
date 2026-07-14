@@ -7,17 +7,18 @@ class GridCellInfo:
 	var world_pos: Vector3
 	var solid: bool
 
-@export var level: Level
-@export var grid_map: GridMap
+var level: Level
+var grid_map: GridMap
 
 @export var start_ref: Node3D
 var start_id: Vector2i
 @export var end_ref: Node3D
 var end_id: Vector2i
+@export var tile_end: TileTrigger
 
 
 var grid_array: Array[Array] = []
-var solid_items = [0]
+var solid_items = [-1, 0]
 
 # Important when setting an array by gridmap only
 var gridmap_x_offset: int = 0
@@ -28,11 +29,20 @@ var last_checked_cell: GridCellInfo
 
 var a_star: AStarGrid2D
 
+signal on_subject_at_end(subject: Subject)
+
 
 func _ready() -> void:
-	setup_level(level)
+	tile_end.entered.connect(on_entered_level_end)
+
 	
 func setup_level(level: Level) -> void:
+	if level == self.level:
+		return
+	
+	if level != self.level and self.level != null:
+		self.level.queue_free()
+	
 	self.level = level
 	
 	grid_map = level.grid_map
@@ -42,6 +52,7 @@ func setup_level(level: Level) -> void:
 	start_ref.global_position = get_world_pos_of(start_id)
 	end_id = gridmap_pos_to_gridarray(Vector3i(level.end_at.x, 0, level.end_at.y))
 	end_ref.global_position = get_world_pos_of(end_id)
+	tile_end.set_pos_in_arr(end_id)
 
 func set_array_by_gridmap() -> void:
 	var bounds = get_gridmap_bounds(grid_map)
@@ -147,3 +158,8 @@ func get_world_pos_of(array_pos: Vector2i) -> Vector3:
 
 func is_pos_solid(arr_pos: Vector2i) -> bool:
 	return solid_items.has(grid_array[arr_pos.y][arr_pos.x])
+
+func on_entered_level_end(body: Node3D) -> void:
+	if body == null or body is not Subject:
+		return
+	on_subject_at_end.emit(body as Subject)

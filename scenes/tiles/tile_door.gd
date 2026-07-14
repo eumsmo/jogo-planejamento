@@ -1,3 +1,4 @@
+@tool
 extends TileTrigger
 
 
@@ -8,6 +9,9 @@ extends TileTrigger
 var is_open: bool = false
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	super()
 	is_open = !is_open
 	set_open(!is_open)
