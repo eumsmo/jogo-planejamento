@@ -12,7 +12,7 @@ extends Node3D
 @export var normal_mat: Material
 @export var disabled_mat: Material
 
-
+var is_disabled: bool = false
 var order: int = 1
 var id: Vector2i
 
@@ -28,6 +28,8 @@ func set_disabled(is_it: bool = true) -> void:
 	else:
 		sphere_mesh.mesh.surface_set_material(0, normal_mat)
 		path_mesh.mesh.surface_set_material(0, normal_mat)
+	
+	is_disabled = is_it
 
 func set_preview(is_it: bool = true) -> void:
 	set_disabled(is_it)
@@ -97,3 +99,18 @@ func can_get_to_pos(pos: Vector2i) -> bool:
 	else:
 		return false
 	return true
+
+func set_material(new_mat: StandardMaterial3D) -> void:
+	var mat = new_mat.duplicate()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	var disabled = mat.duplicate()
+	mat.stencil_mode = BaseMaterial3D.STENCIL_MODE_XRAY
+	mat.stencil_color = mat.albedo_color.lightened(0.5)
+	normal_mat = mat
+	
+	disabled.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	disabled.no_depth_test = true
+	disabled.albedo_color.a = 0.4
+	disabled_mat = disabled
+	
+	set_disabled(is_disabled)

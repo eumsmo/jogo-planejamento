@@ -3,16 +3,28 @@
 [ext_resource type="Script" uid="uid://ck1pokocsmdex" path="res://scenes/game.gd" id="1_p57ef"]
 [ext_resource type="Script" uid="uid://s8qmeiqq1dc3" path="res://scenes/world/world.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dk36l6owtiwhl" path="res://scenes/world/grid_selector.gd" id="2_yqjtg"]
+[ext_resource type="Material" uid="uid://d1yudhbop13uy" path="res://resources/materials/blue.tres" id="3_rysoc"]
 [ext_resource type="PackedScene" uid="uid://3rxn57huq23u" path="res://scenes/selection/order_marker.tscn" id="4_lbhrr"]
+[ext_resource type="Material" uid="uid://bpph5a1d0q754" path="res://resources/materials/cyan.tres" id="4_ssvqc"]
+[ext_resource type="Material" uid="uid://m7xisipgcctu" path="res://resources/materials/magenta.tres" id="5_264po"]
 [ext_resource type="Script" uid="uid://d12a86b5n8s8v" path="res://scenes/systems/planning.gd" id="5_iywne"]
-[ext_resource type="Script" uid="uid://2wo0ejwsrqn1" path="res://scenes/systems/navigation.gd" id="5_u5sy4"]
 [ext_resource type="Script" uid="uid://laxinkws2qow" path="res://scripts/time_manager.gd" id="6_0tnpc"]
+[ext_resource type="Material" uid="uid://le6fq3mb2yyx" path="res://resources/materials/orange.tres" id="6_1kice"]
+[ext_resource type="Material" uid="uid://b2ajwf4jqvlyo" path="res://resources/materials/pink.tres" id="7_5newe"]
 [ext_resource type="Script" uid="uid://bmsho6tylunqv" path="res://scripts/main_controller.gd" id="7_vtaks"]
+[ext_resource type="Material" uid="uid://b3p5420vnrau5" path="res://resources/materials/yellow.tres" id="8_37s47"]
 [ext_resource type="PackedScene" uid="uid://bjse1217y62jj" path="res://scenes/subject/subject.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://c05gm5fct2war" path="res://resources/levels/level_1.tscn" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://nwewi03x23h1" path="res://scenes/tiles/tile_end.tscn" id="17_rysoc"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tic2y"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.19607843)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_yf5fn"]
+material = SubResource("StandardMaterial3D_tic2y")
 size = Vector2(1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
@@ -42,19 +54,15 @@ controller = NodePath("Systems/MainController")
 
 [node name="Systems" type="Node3D" parent="." unique_id=1404789921]
 
-[node name="Planning" type="Node3D" parent="Systems" unique_id=738419957 node_paths=PackedStringArray("preview_marker", "first_marker", "last_marker")]
+[node name="Planning" type="Node3D" parent="Systems" unique_id=738419957 node_paths=PackedStringArray("preview_marker")]
 script = ExtResource("5_iywne")
+marker_materials = Array[Material]([ExtResource("6_1kice"), ExtResource("4_ssvqc"), ExtResource("5_264po"), ExtResource("8_37s47"), ExtResource("3_rysoc"), ExtResource("7_5newe")])
 marker_scene = ExtResource("4_lbhrr")
 preview_marker = NodePath("PreviewMarker")
-first_marker = NodePath("First")
-last_marker = NodePath("First")
 
 [node name="PreviewMarker" parent="Systems/Planning" unique_id=1505654806 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8346536, 0.14759254, -1.3945565)
 visible = false
-
-[node name="First" parent="Systems/Planning" unique_id=903037787 instance=ExtResource("4_lbhrr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6225753, 0.2951851, 4.2138977)
 
 [node name="GridSelector" type="Node" parent="Systems" unique_id=1634923441 node_paths=PackedStringArray("selection_visualization", "camera")]
 script = ExtResource("2_yqjtg")
@@ -66,11 +74,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -16)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Systems/GridSelector/GridSelection" unique_id=1621011709]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_yf5fn")
-
-[node name="Navigation" type="Node" parent="Systems" unique_id=1908582800]
-script = ExtResource("5_u5sy4")
 
 [node name="TimeManager" type="Node" parent="Systems" unique_id=1942052822]
 script = ExtResource("6_0tnpc")

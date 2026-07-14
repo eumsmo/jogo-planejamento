@@ -1,11 +1,12 @@
 [gd_resource type="MeshLibrary" format=3 uid="uid://sav61itkrf4"]
 
-[ext_resource type="Material" uid="uid://cq0m2tbta0jta" path="res://resources/materials/grey.tres" id="1_uk0s0"]
-
 [sub_resource type="PlaceholderMesh" id="PlaceholderMesh_kvpfn"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsjq1"]
+albedo_color = Color(0.23921569, 0.25882354, 0.43137255, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_4eui4"]
-material = ExtResource("1_uk0s0")
+material = SubResource("StandardMaterial3D_lsjq1")
 size = Vector3(1, 10, 1)
 
 [resource]

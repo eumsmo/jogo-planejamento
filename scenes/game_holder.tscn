@@ -18,6 +18,64 @@ func plan() -> void:
 	Game.instance.controller.plan()
 "
 
+[sub_resource type="GDScript" id="GDScript_3txyw"]
+script/source = "extends Control
+
+func _ready() -> void:
+	Game.instance.planning.delete_confirmation_requested.connect(requested)
+
+func requested() -> void:
+	show()
+
+func on_yes() -> void:
+	close()
+	Game.instance.planning.answer_delete_request(true)
+
+func on_no() -> void:
+	close()
+	Game.instance.planning.answer_delete_request(false)
+
+func close() -> void:
+	hide()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uc32q"]
+bg_color = Color(0, 0, 0, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(0.24705882, 0.24705882, 0.24705882, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="GDScript" id="GDScript_kvpfn"]
+script/source = "extends HBoxContainer
+
+
+func _ready() -> void:
+	Game.instance.planning.on_profiles_changed.connect(on_subjects_change)
+
+
+func on_subjects_change(quant: int) -> void:
+	for child in get_children():
+		child.queue_free()
+	
+	for i in range(0, quant):
+		var button = create_button(i)
+		button.pressed.connect(button_clicked.bind(i))
+		add_child(button)
+
+
+func create_button(idx: int) -> Button:
+	var button = Button.new()
+	button.text += \"Subject \" + str(idx+1)
+	return button
+
+func button_clicked(idx: int) -> void:
+	Game.instance.planning.change_current_profile(idx)
+"
+
 [node name="GameHolder" type="Control" unique_id=530257783]
 layout_mode = 3
 anchors_preset = 15
@@ -79,5 +137,103 @@ grow_vertical = 0
 text = "Plan"
 script = SubResource("GDScript_uc32q")
 
+[node name="DeleteConfirmation" type="Control" parent="UI" unique_id=1135269666]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_3txyw")
+
+[node name="DarkerYetDarker" type="Panel" parent="UI/DeleteConfirmation" unique_id=1544252434]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uc32q")
+
+[node name="Panel" type="Panel" parent="UI/DeleteConfirmation" unique_id=979177588]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -104.0
+offset_right = 185.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DeleteConfirmation/Panel" unique_id=1184653577]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="UI/DeleteConfirmation/Panel/MarginContainer" unique_id=609567613]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Are you sure you want to delete this marker and the ones after it?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/DeleteConfirmation/Panel" unique_id=449317048]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Button" type="Button" parent="UI/DeleteConfirmation/Panel/HBoxContainer" unique_id=852793708]
+layout_mode = 2
+text = "Yes, delete it all"
+
+[node name="Button2" type="Button" parent="UI/DeleteConfirmation/Panel/HBoxContainer" unique_id=2098189027]
+layout_mode = 2
+text = "Nope, please don't"
+
+[node name="SubjectSelector" type="HBoxContainer" parent="UI" unique_id=1515271844]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.0
+offset_right = 103.0
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 1
+script = SubResource("GDScript_kvpfn")
+
+[node name="Button" type="Button" parent="UI/SubjectSelector" unique_id=837881294]
+layout_mode = 2
+text = "Subject Nº 1"
+
+[node name="Button2" type="Button" parent="UI/SubjectSelector" unique_id=294806869]
+layout_mode = 2
+text = "Subject Nº 1"
+
 [connection signal="pressed" from="UI/Button" to="UI/Button" method="play"]
 [connection signal="pressed" from="UI/Button2" to="UI/Button2" method="plan"]
+[connection signal="pressed" from="UI/DeleteConfirmation/Panel/HBoxContainer/Button" to="UI/DeleteConfirmation" method="on_yes"]
+[connection signal="pressed" from="UI/DeleteConfirmation/Panel/HBoxContainer/Button2" to="UI/DeleteConfirmation" method="on_no"]

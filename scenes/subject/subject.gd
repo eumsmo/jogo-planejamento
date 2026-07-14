@@ -34,12 +34,21 @@ func play() -> void:
 
 func set_directions(arr: Array[Vector2]) -> void:
 	directions = arr
+	
+	if not arr.is_empty():
+		var dir: Vector2 = directions[0]
+		var dir3: Vector3 = vec2_to_vec3(dir)
+		look_at(global_position - dir3)
 
 func set_exact_points_path(points_path: Array[Vector2]) -> void:
 	exact_points_on_path = points_path
 
 func transtion_progress(progress: float) -> void:
 	if ended_transition:
+		return
+	
+	if current_idx >= len(directions):
+		next()
 		return
 	
 	animator.play(animation_dict[Animations.WALK])
