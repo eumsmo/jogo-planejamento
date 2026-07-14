@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://e36bq4h8i84j"]
+
+[ext_resource type="Script" uid="uid://dllk8et4jik4b" path="res://scenes/tiles/tile_switch.gd" id="1_ce13d"]
+[ext_resource type="PackedScene" uid="uid://p5o58i3jcblc" path="res://resources/blender/models/machines/maquinaalavanca.tscn" id="3_edhp1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.8, 1, 0.8)
+
+[node name="TileLever" type="Area3D" unique_id=527635847 node_paths=PackedStringArray("mesh_point", "animator")]
+script = ExtResource("1_ce13d")
+on_animation = "maqlever_push_001"
+off_animation_is_reversed_on = true
+mesh_point = NodePath("mesh/maquinaalavanca")
+subject_animation_on_interact = 3
+animator = NodePath("mesh/maquinaalavanca/maquina_alavanca/AnimationPlayer")
+metadata/_custom_type_script = "uid://7p8k5a0e80um"
+
+[node name="mesh" type="Node3D" parent="." unique_id=1568678372]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="maquinaalavanca" parent="mesh" unique_id=37662211 instance=ExtResource("3_edhp1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.80376005)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1441307919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[editable path="mesh/maquinaalavanca"]
+[editable path="mesh/maquinaalavanca/maquina_alavanca"]

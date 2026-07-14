@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bvmjqr0mpa8xy"]
+
+[ext_resource type="PackedScene" uid="uid://dgx3titcwo51c" path="res://resources/blender/models/machines/alavanca.tscn" id="1_p7eie"]
+[ext_resource type="PackedScene" uid="uid://3qwx2bksmrvb" path="res://resources/blender/models/machines/grandebotao.tscn" id="2_4gdap"]
+[ext_resource type="PackedScene" uid="uid://p5o58i3jcblc" path="res://resources/blender/models/machines/maquinaalavanca.tscn" id="3_6ad2q"]
+[ext_resource type="PackedScene" uid="uid://bnsewekl4gncv" path="res://resources/blender/models/machines/maquina_botoes.tscn" id="4_8rvcy"]
+
+[node name="TileObject" type="Node3D" unique_id=665990465]
+
+[node name="mesh" type="Node3D" parent="." unique_id=1568678372]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="alavanca" parent="mesh" unique_id=1512997537 instance=ExtResource("1_p7eie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4935786, -1.032894)
+
+[node name="grandebotao" parent="mesh" unique_id=2004233865 instance=ExtResource("2_4gdap")]
+
+[node name="maquinaalavanca" parent="mesh" unique_id=37662211 instance=ExtResource("3_6ad2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.80376005)
+
+[node name="maquina_botoes" parent="mesh" unique_id=127447782 instance=ExtResource("4_8rvcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.80376005)

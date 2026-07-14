@@ -16,7 +16,11 @@ func _ready() -> void:
 	preview_marker.set_order(last_marker.order + 1)
 	
 	await get_tree().process_frame
-	last_marker.id = Vector2i(7,7)
+	set_starting_marker()
+	
+
+func set_starting_marker() -> void:
+	last_marker.id = Game.instance.world.start_id
 	last_marker.global_position = Game.instance.world.get_world_pos_of(last_marker.id)
 
 

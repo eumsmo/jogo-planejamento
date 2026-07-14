@@ -26,11 +26,18 @@
 [ext_resource type="Material" uid="uid://b3p5420vnrau5" path="res://resources/materials/yellow.tres" id="19_8q33f"]
 [ext_resource type="PackedScene" uid="uid://btv53xwksdvj4" path="res://resources/blender/models/character/accessories/sapatinho.tscn" id="24_j3pdc"]
 
-[node name="Subject" type="Node3D" unique_id=720220699 node_paths=PackedStringArray("animator")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+radius = 0.25
+height = 1.0
+
+[node name="Subject" type="AnimatableBody3D" unique_id=1328250613 node_paths=PackedStringArray("animator") groups=["subject"]]
+sync_to_physics = false
 script = ExtResource("1_s6sdc")
 animation_dict = Dictionary[int, String]({
 0: "idle",
-1: "walk_001"
+1: "walk_001",
+2: "click_buttons",
+3: "push_lever"
 })
 animator = NodePath("ratinho/ratinho/AnimationPlayer")
 
@@ -51,7 +58,7 @@ bones/7/rotation = Quaternion(0.29512066, 4.5057544e-17, -6.4578218e-18, 0.95546
 bones/8/position = Vector3(-4.654057e-25, 0.0015593595, -1.4901161e-10)
 bones/8/rotation = Quaternion(0.22287701, 3.4506372e-17, 4.49547e-18, 0.9748466)
 bones/9/position = Vector3(2.2562304e-25, 0.0013591489, 9.540979e-18)
-bones/9/rotation = Quaternion(0.32017037, 4.2521183e-17, 1.648694e-17, 0.94736004)
+bones/9/rotation = Quaternion(0.32017037, 4.252118e-17, 1.648694e-17, 0.94736)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(-4.539518e-25, 0.00091553736, 1.4901168e-10)
 bones/10/rotation = Quaternion(-0.52169746, -4.262911e-17, 2.8744185e-17, 0.8531306)
@@ -145,6 +152,10 @@ meshs = [NodePath("pulseiras/pulseiras/pulseiras")]
 
 [node name="pulseiras" parent="accessories/pulseiras" unique_id=336641684 instance=ExtResource("6_kgi1f")]
 transform = Transform3D(1.6379706e-09, 6.945167e-10, 0.010000004, 0.009985693, -0.00053473003, -1.0988289e-09, 0.00053472864, 0.009985696, -7.5427664e-10, 5.997839e-06, -0.0003239122, -9.70564e-06)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=536384049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_g4v7s")
 
 [editable path="ratinho"]
 [editable path="ratinho/ratinho"]

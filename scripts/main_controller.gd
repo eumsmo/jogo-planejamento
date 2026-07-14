@@ -17,14 +17,15 @@ func play() -> void:
 		child.queue_free()
 	
 	var subject = spawn_subject_at(start_position)
+	
+	await get_tree().process_frame
+	subject.teleport_to(start_position)
 	subject.set_directions(directions)
 	subject.play()
 
 func spawn_subject_at(world_pos: Vector3) -> Subject:
 	var subject = subject_scene.instantiate()
 	subject_holder.add_child(subject)
-	
-	subject.global_position = world_pos
 	return subject
 
 

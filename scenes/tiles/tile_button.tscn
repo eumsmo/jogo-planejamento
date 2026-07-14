@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bhyew5m7lkw3x"]
+
+[ext_resource type="Script" uid="uid://dh0cf7od2dn4e" path="res://scenes/tiles/tile_button.gd" id="1_k171u"]
+[ext_resource type="PackedScene" uid="uid://bnsewekl4gncv" path="res://resources/blender/models/machines/maquina_botoes.tscn" id="4_wjn8d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.8, 1, 0.8)
+
+[node name="TileButton" type="Area3D" unique_id=433784174 node_paths=PackedStringArray("mesh_point")]
+script = ExtResource("1_k171u")
+mesh_point = NodePath("mesh/maquina_botoes")
+subject_animation_on_interact = 2
+
+[node name="mesh" type="Node3D" parent="." unique_id=1568678372]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="maquina_botoes" parent="mesh" unique_id=127447782 instance=ExtResource("4_wjn8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.80376005)
+
+[node name="Skeleton3D" parent="mesh/maquina_botoes/maquina_botoes/arm_botoes" parent_id_path=PackedInt32Array(127447782, 1395666642, 1807413149) index="0" unique_id=1099396169]
+bones/1/position = Vector3(-0.0029863727, 0.014389484, 0.001988376)
+bones/11/position = Vector3(-0.0010067698, 0.013375022, 0.0032050752)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1176032482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[editable path="mesh/maquina_botoes"]
+[editable path="mesh/maquina_botoes/maquina_botoes"]

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://w68v0m0o5msy"]
+
+[ext_resource type="Script" uid="uid://dllk8et4jik4b" path="res://scenes/tiles/tile_switch.gd" id="1_kg4c4"]
+[ext_resource type="PackedScene" uid="uid://dgx3titcwo51c" path="res://resources/blender/models/machines/alavanca.tscn" id="2_kg4c4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.8, 1, 0.8)
+
+[node name="TileLever" type="Area3D" unique_id=527635847 node_paths=PackedStringArray("mesh_point", "animator")]
+script = ExtResource("1_kg4c4")
+on_animation = "lever_down_001"
+off_animation_is_reversed_on = true
+mesh_point = NodePath("mesh/alavanca")
+subject_animation_on_interact = 3
+animator = NodePath("mesh/alavanca/alavanca/AnimationPlayer")
+metadata/_custom_type_script = "uid://7p8k5a0e80um"
+
+[node name="mesh" type="Node3D" parent="." unique_id=1568678372]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="alavanca" parent="mesh" unique_id=1512997537 instance=ExtResource("2_kg4c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4935786, -1.032894)
+
+[node name="Skeleton3D" parent="mesh/alavanca/alavanca/arm_alavanca" parent_id_path=PackedInt32Array(1512997537, 569468908, 477470869) index="0" unique_id=1442407461]
+bones/1/position = Vector3(0, 0.0013067229, 0.00051531615)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1441307919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[editable path="mesh/alavanca"]
+[editable path="mesh/alavanca/alavanca"]

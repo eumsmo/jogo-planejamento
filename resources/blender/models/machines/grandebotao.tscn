@@ -5,3 +5,8 @@
 [node name="grandebotao" type="Node3D" unique_id=2004233865]
 
 [node name="grandebotao" parent="." unique_id=1363789917 instance=ExtResource("1_qquu5")]
+
+[node name="Skeleton3D" parent="grandebotao/arm_grandbotao" parent_id_path=PackedInt32Array(1363789917, 382778971) index="0" unique_id=1211888731]
+bones/1/position = Vector3(-2.5527019e-19, 0.008120045, -7.318601e-05)
+
+[editable path="grandebotao"]

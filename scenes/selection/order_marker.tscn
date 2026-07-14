@@ -31,11 +31,12 @@ normal_mat = ExtResource("1_ydaoj")
 disabled_mat = ExtResource("2_l0jos")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=551210701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_g4v7s")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1253150958]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0044033527)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.004)
 billboard = 1
 no_depth_test = true
 render_priority = 9
@@ -45,6 +46,8 @@ text = "1"
 font_size = 92
 
 [node name="Path" type="Node3D" parent="." unique_id=721377397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path" unique_id=543710170]
+visible = false
 mesh = SubResource("CylinderMesh_g4v7s")

@@ -7,7 +7,14 @@ class GridCellInfo:
 	var world_pos: Vector3
 	var solid: bool
 
+@export var level: Level
 @export var grid_map: GridMap
+
+@export var start_ref: Node3D
+var start_id: Vector2i
+@export var end_ref: Node3D
+var end_id: Vector2i
+
 
 var grid_array: Array[Array] = []
 var solid_items = [0]
@@ -23,7 +30,18 @@ var a_star: AStarGrid2D
 
 
 func _ready() -> void:
+	setup_level(level)
+	
+func setup_level(level: Level) -> void:
+	self.level = level
+	
+	grid_map = level.grid_map
 	set_array_by_gridmap()
+	
+	start_id = gridmap_pos_to_gridarray(Vector3i(level.start_at.x, 0, level.start_at.y))
+	start_ref.global_position = get_world_pos_of(start_id)
+	end_id = gridmap_pos_to_gridarray(Vector3i(level.end_at.x, 0, level.end_at.y))
+	end_ref.global_position = get_world_pos_of(end_id)
 
 func set_array_by_gridmap() -> void:
 	var bounds = get_gridmap_bounds(grid_map)
@@ -109,7 +127,8 @@ func get_grid_at(world_pos: Vector3) -> GridCellInfo:
 	
 	var info = GridCellInfo.new()
 	info.arr_pos = gridarray_pos
-	info.world_pos = grid_map.map_to_local(gridmap_pos)
+	info.world_pos = get_world_pos_of(gridarray_pos)
+	
 	info.item = grid_array[gridarray_pos.y][gridarray_pos.x]
 	info.solid = is_item_solid(info.item)
 	
@@ -121,6 +140,7 @@ func get_grid_at(world_pos: Vector3) -> GridCellInfo:
 func get_world_pos_of(array_pos: Vector2i) -> Vector3:
 	var in_map_pos = gridarray_pos_to_gridmap(array_pos)
 	var in_world_pos = grid_map.map_to_local(in_map_pos)
+	in_world_pos.y -= grid_map.cell_size.y/2
 	in_world_pos = grid_map.to_global(in_world_pos)
 	return in_world_pos
 
