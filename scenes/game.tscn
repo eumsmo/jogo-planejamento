@@ -14,8 +14,9 @@
 [ext_resource type="Script" uid="uid://bmsho6tylunqv" path="res://scripts/main_controller.gd" id="7_vtaks"]
 [ext_resource type="Material" uid="uid://b3p5420vnrau5" path="res://resources/materials/yellow.tres" id="8_37s47"]
 [ext_resource type="PackedScene" uid="uid://bjse1217y62jj" path="res://scenes/subject/subject.tscn" id="8_gee14"]
-[ext_resource type="PackedScene" uid="uid://c05gm5fct2war" path="res://resources/levels/level_1.tscn" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://c05gm5fct2war" path="res://resources/levels/level_1.tscn" id="14_ca42v"]
 [ext_resource type="PackedScene" uid="uid://nwewi03x23h1" path="res://scenes/tiles/tile_end.tscn" id="17_rysoc"]
+[ext_resource type="Texture2D" uid="uid://cnykp80skj8yl" path="res://resources/sprites/arrow.png" id="17_ssvqc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tic2y"]
 transparency = 1
@@ -27,7 +28,14 @@ albedo_color = Color(1, 1, 1, 0.19607843)
 material = SubResource("StandardMaterial3D_tic2y")
 size = Vector2(1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rysoc"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.36862746)
+albedo_texture = ExtResource("17_ssvqc")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_rysoc")
 size = Vector2(1, 1)
 
 [sub_resource type="Environment" id="Environment_4eui4"]
@@ -86,7 +94,7 @@ each_tick_time = 0.01
 script = ExtResource("7_vtaks")
 subject_holder = NodePath("../../Subjects")
 subject_scene = ExtResource("8_gee14")
-level_scene = ExtResource("11_kvpfn")
+level_scene = ExtResource("14_ca42v")
 
 [node name="World" type="Node3D" parent="." unique_id=497816465 node_paths=PackedStringArray("start_ref", "end_ref", "tile_end")]
 script = ExtResource("1_uwrxv")
@@ -100,18 +108,17 @@ visible = false
 
 [node name="Start" type="Marker3D" parent="World" unique_id=1154828860]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Start" unique_id=1194204271]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+visible = false
 mesh = SubResource("PlaneMesh_g4v7s")
 
 [node name="End" type="Marker3D" parent="World" unique_id=398223230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5)
-visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/End" unique_id=707378855]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/End" unique_id=1649626871]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.01, 0)
 mesh = SubResource("PlaneMesh_g4v7s")
 
 [node name="Subjects" type="Node3D" parent="." unique_id=1390004489]
@@ -120,8 +127,19 @@ mesh = SubResource("PlaneMesh_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 0.7836612, 0.6211886, 0, -0.6211886, 0.7836612, 0, 7.95595, 10.129824)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=705907994]
-transform = Transform3D(1, 0, 0, 0, 0.7836612, 0.6211886, 0, -0.6211886, 0.7836612, 0, 4.3583164, 5.659629)
+transform = Transform3D(1, 0, 0, 0, 0.7836612, 0.6211886, 0, -0.6211886, 0.7836612, 0, 5.8228903, 7.5072637)
 environment = SubResource("Environment_4eui4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1159921346]
-transform = Transform3D(0.7145714, 0.20394047, -0.6691756, 0, 0.95656306, 0.29152572, 0.6995625, -0.20831595, 0.6835326, 0, 20, 0)
+transform = Transform3D(0.7145714, 0.20394047, -0.6691756, 0, 0.95656306, 0.29152572, 0.6995625, -0.20831595, 0.6835326, -3.9106264, 21.742435, 4.1719685)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=824074143]
+transform = Transform3D(-0.9953413, 0.094266556, -0.020236768, 0.09452683, 0.9954465, -0.012312325, 0.018983845, -0.014167908, -0.9997195, -0.039611816, 17.020958, -8.137424)
+light_color = Color(0.64739996, 0.68055, 0.78, 1)
+light_energy = 0.25
+sky_mode = 1
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=1242830337]
+transform = Transform3D(0.6353696, -0.31527537, 0.70491636, -1.4901161e-08, 0.91285807, 0.40827766, -0.7722081, -0.25940725, 0.5800023, 5.7331724, 19.879015, 4.2244935)
+light_energy = 0.25
+sky_mode = 1

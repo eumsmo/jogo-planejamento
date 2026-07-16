@@ -33,7 +33,10 @@ func play() -> void:
 		subject.set_exact_points_path(positions)
 		
 		await Game.instance.time.tick
-		subject.play()
+		if subject != null:
+			subject.play()
+		else:
+			return
 
 func spawn_subject_at(world_pos: Vector3) -> Subject:
 	var subject = subject_scene.instantiate()
@@ -53,6 +56,9 @@ func on_entered_level_end(sub: Subject) -> void:
 		return
 	
 	print("End!")
+	
+	await Game.instance.time.tick
+	await Game.instance.time.tick
 	
 	var next_level = Game.instance.world.level.next_level_scene
 	if next_level == null:

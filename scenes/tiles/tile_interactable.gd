@@ -4,6 +4,9 @@ extends TileTrigger
 @export var mesh_point: Node3D
 @export var subject_animation_on_interact: Subject.Animations
 
+var skip_signal: bool = false
+
+signal on_interacted(subject: Subject)
 
 func _on_enter(body: Node3D) -> void:
 	var had = bodies_inside.has(body)
@@ -21,6 +24,9 @@ func _on_enter(body: Node3D) -> void:
 		
 		subject.look_towards(mesh_point.global_position)
 		subject.play_animation(subject_animation_on_interact)
+		
+		if not skip_signal:
+			on_interacted.emit(subject)
 		
 		_on_interact(subject)
 		subject.unpause()

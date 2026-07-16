@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cikjjtdqhis8h" path="res://scripts/level.gd" id="1_jxfqj"]
 [ext_resource type="MeshLibrary" uid="uid://sav61itkrf4" path="res://resources/levels/base/mesh_library.tres" id="2_57273"]
+[ext_resource type="PackedScene" uid="uid://c3aojj06ti4kn" path="res://resources/levels/level_3.tscn" id="2_ehcfg"]
 [ext_resource type="PackedScene" uid="uid://b7juqgvhes4jd" path="res://scenes/tiles/tile_door.tscn" id="3_ehcfg"]
 [ext_resource type="PackedScene" uid="uid://w68v0m0o5msy" path="res://scenes/tiles/tile_lever_wall.tscn" id="4_ft2hk"]
 
@@ -10,6 +11,7 @@ script = ExtResource("1_jxfqj")
 start_at = Vector2i(-7, -2)
 end_at = Vector2i(6, -2)
 grid_map = NodePath("GridMap")
+next_level_scene = ExtResource("2_ehcfg")
 
 [node name="GridMap" type="GridMap" parent="." unique_id=1989412788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)

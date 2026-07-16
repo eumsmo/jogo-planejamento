@@ -20,6 +20,7 @@ var inside: bool:
 
 signal entered(body: Node3D)
 signal left(body: Node3D)
+signal mode_changed(has_anyone: bool)
 
 
 func in_editor_reposition():
@@ -82,6 +83,7 @@ func _on_enter(body: Node3D) -> void:
 		entered.emit(body)
 		
 		if was_empty:
+			mode_changed.emit(true)
 			refresh_animation()
 
 func _on_exit(body: Node3D) -> void:
@@ -91,6 +93,7 @@ func _on_exit(body: Node3D) -> void:
 		left.emit(body)
 		
 		if wasnt_empty and bodies_inside.is_empty():
+			mode_changed.emit(false)
 			refresh_animation()
 
 func refresh_animation() -> void:

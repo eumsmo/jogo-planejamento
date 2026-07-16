@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://kmlowul86pt1"]
+
+[ext_resource type="Texture2D" uid="uid://bvg1yy6mwid08" path="res://resources/sprites/rat_icon.png" id="1_3yosy"]
+[ext_resource type="Script" uid="uid://57pldepysi6y" path="res://scenes/ui/subject_button.gd" id="2_28nhp"]
+
+[node name="SubjectButton" type="Button" unique_id=1394411305]
+custom_minimum_size = Vector2(48, 48)
+mouse_default_cursor_shape = 2
+text = "
+"
+icon = ExtResource("1_3yosy")
+flat = true
+expand_icon = true
+script = ExtResource("2_28nhp")

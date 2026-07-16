@@ -23,7 +23,9 @@ func _on_interact(subject: Subject) -> void:
 	else:
 		is_on = true
 	
-	value_changed.emit(is_on)
+	if not skip_signal:
+		value_changed.emit(is_on)
+	
 	switch_animation()
 
 

@@ -1,12 +1,12 @@
 @tool
 extends TileTrigger
 
+@export var is_open: bool = false
 
 @export_group("Animation")
 @export var open_animation: String
 @export var close_animation: String
 
-var is_open: bool = false
 
 func _ready() -> void:
 	if Engine.is_editor_hint():

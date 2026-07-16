@@ -17,6 +17,9 @@ enum Animations { IDLE, WALK, BUTTONS, LEVER }
 @export var animation_dict: Dictionary[Animations, String]
 @export var animator: AnimationPlayer
 
+@export var visual: Node3D
+@export var particles: GPUParticles3D
+
 var can_go_next: bool = true
 var ended_transition: bool = false
 
@@ -127,6 +130,12 @@ func die() -> void:
 	Game.instance.time.tick.disconnect(next)
 	animator.play(animation_dict[Animations.IDLE])
 	
-	await get_tree().create_timer(0.5).timeout
+	var pos = global_position
+	particles.show()
+	particles.emitting = true
+	
+	visual.hide()
+	
+	await particles.finished
 	
 	queue_free()

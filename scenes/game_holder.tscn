@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://elldjk0mw77j"]
 
 [ext_resource type="PackedScene" uid="uid://duab2g6413qdl" path="res://scenes/game.tscn" id="1_uc32q"]
+[ext_resource type="PackedScene" uid="uid://kmlowul86pt1" path="res://scenes/ui/subject_button.tscn" id="2_3txyw"]
 
 [sub_resource type="GDScript" id="GDScript_g4v7s"]
 script/source = "extends Button
@@ -52,6 +53,7 @@ corner_radius_bottom_left = 16
 [sub_resource type="GDScript" id="GDScript_kvpfn"]
 script/source = "extends HBoxContainer
 
+@export var button_scene: PackedScene
 
 func _ready() -> void:
 	Game.instance.planning.on_profiles_changed.connect(on_subjects_change)
@@ -68,8 +70,9 @@ func on_subjects_change(quant: int) -> void:
 
 
 func create_button(idx: int) -> Button:
-	var button = Button.new()
-	button.text += \"Subject \" + str(idx+1)
+	var button = button_scene.instantiate()
+	var color = Game.instance.planning.marker_materials[idx].albedo_color
+	button.set_color(color)
 	return button
 
 func button_clicked(idx: int) -> void:
@@ -224,14 +227,10 @@ offset_bottom = 40.0
 grow_horizontal = 2
 alignment = 1
 script = SubResource("GDScript_kvpfn")
+button_scene = ExtResource("2_3txyw")
 
-[node name="Button" type="Button" parent="UI/SubjectSelector" unique_id=837881294]
+[node name="SubjectButton" parent="UI/SubjectSelector" unique_id=1394411305 instance=ExtResource("2_3txyw")]
 layout_mode = 2
-text = "Subject Nº 1"
-
-[node name="Button2" type="Button" parent="UI/SubjectSelector" unique_id=294806869]
-layout_mode = 2
-text = "Subject Nº 1"
 
 [connection signal="pressed" from="UI/Button" to="UI/Button" method="play"]
 [connection signal="pressed" from="UI/Button2" to="UI/Button2" method="plan"]
